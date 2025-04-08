@@ -35,7 +35,8 @@ let Lupita:Persona = {
     donante: true,
     autos:[autoDeLupita, autoDeLupitaII]
 };
-
+autoDeLupita.duenio = Lupita.id;
+autoDeLupitaII.duenio = Lupita.id;
 let Castor:Persona = {
     id: darId(),
     nombre:'Juan Castor 2',
@@ -46,6 +47,7 @@ let Castor:Persona = {
     donante: false,
     autos:[autoDeCastor]
 };
+autoDeCastor.duenio = Castor.id;
 personas=[Alen, Castor, Lupita];
 
 export {personas};
