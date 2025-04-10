@@ -1,0 +1,36 @@
+[
+    {
+      "id": "1",
+      "marca": "Fotorama",
+      "modelo": "Terrenator",
+      "anio": 2012,
+      "patente": "AF 456 RF",
+      "color": "Verde mate con lineas negras",
+      "numerodeChasis": "BF-55-5544",
+      "motor": "5V",
+      "duenio": "p3"
+    },
+    {
+      "id": "2",
+      "marca": "Fotorama",
+      "modelo": "Terrenator",
+      "anio": 2012,
+      "patente": "AF 456 RF",
+      "color": "Verde mate con lineas negras",
+      "numerodeChasis": "BF-55-5544",
+      "motor": "5V",
+      "duenio": "p3"
+    },
+    {
+      "id": "3",
+      "marca": "Fotorama",
+      "modelo": "Terrenator",
+      "anio": 2012,
+      "patente": "AF 456 RF",
+      "color": "Verde mate con lineas negras",
+      "numerodeChasis": "BF-55-5544",
+      "motor": "5V",
+      "duenio": "p2"
+    }
+  ]
+  

@@ -23,7 +23,9 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
     "globals": "^16.0.0",
-    "typescript-eslint": "^8.28.0"
+    "typescript-eslint": "^8.28.0",
+    "tsx":"^4.19.3"
+
   },
   "dependencies": {
     "body-parser": "^1.20.3",

@@ -1,6 +1,6 @@
-import { Auto } from "../models/auto";
-import { autos } from "../repositories/autoRepositori";
-import { personas } from "../repositories/personaRepositori";
+import { Auto } from "../models/auto.model";
+import { autos } from "../db/datos.db";
+import { personas } from "../db/datos.db";
 import { darId } from "../utilid/utilid";
 
 
@@ -38,16 +38,33 @@ const infoBasicaDeAuto=(autos:Auto[]):InformacionBasicaAuto[]=>{
 const buscarAuto=(idAuto:string): Auto|undefined=>{
     return autos.find(a=>a.id===idAuto);
 }
-const isArgumentosCorrectoAuto=(auto:Auto): boolean=>{
+const sonDeTiposCorrectos =(auto:Auto): boolean=>{
     return (
-        typeof auto.marca=='string'&&
-        typeof auto.modelo=='string'&&
-        typeof auto.anio=='number'&&
-        typeof auto.patente=='string'&&
-        typeof auto.color=='string'&&
-        typeof auto.numerodeChasis=='string'&&
+        typeof auto.marca=='string'||
+        typeof auto.modelo=='string'||
+        typeof auto.anio=='number'||
+        typeof auto.patente=='string'||
+        typeof auto.color=='string'||
+        typeof auto.numerodeChasis=='string'||
         typeof auto.motor=='string'
     );
+}
+const sonArgumentosCorrectos= (auto: Auto): boolean => {
+    const clavesValidas = [
+        "marca",
+        "modelo",
+        "anio",
+        "patente",
+        "color",
+        "numerodeChasis",
+        "motor",
+        "duenio",
+    ];
+    const clavesAuto = Object.keys(auto);
+    const tieneSoloClavesValidas = clavesAuto.length==clavesValidas.length
+    
+    return tieneSoloClavesValidas;
+    
 }
 const registrarAuto=(newAuto:Auto):Auto|undefined=>{
     const duenio= personas.find(p=>p.id===newAuto.duenio);
@@ -68,6 +85,10 @@ const obtenerIdDelDuenio=(auto:Auto):string|undefined=>{
     return duenio?.id;
     
 }
-
-export { listarAutos, listarAutosDelDuenio, buscarAuto, isArgumentosCorrectoAuto, 
-    registrarAuto, obtenerIdDelDuenio, };
+const eliminarAuto=(idPersona:string)=>{
+    const index= autos.findIndex(a=> a.id===idPersona);
+    autos.splice(index)
+}
+export {  registrarAuto, obtenerIdDelDuenio, eliminarAuto, sonArgumentosCorrectos,  listarAutos, sonDeTiposCorrectos,
+    buscarAuto, listarAutosDelDuenio,
+ };

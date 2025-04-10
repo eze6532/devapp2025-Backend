@@ -1,4 +1,4 @@
-import { Persona } from "./persona";
+import { Persona } from "./persona.model";
 
 export interface Auto {
     id: string,
@@ -15,4 +15,4 @@ const actualizarAuto= (auto: Auto ,cambios: Partial<Auto>): Auto => {
     //creo una copia del objeto orijinal y agrega los cambios
     return {...auto, ...cambios };
 };
-export{ actualizarAuto}
+export{ actualizarAuto };
