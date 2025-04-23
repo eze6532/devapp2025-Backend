@@ -1,6 +1,6 @@
 import { Persona } from "../../models/persona.model";
 
-export interface AutoDto{
+export interface AutoCompletoDto{
     id: string,
     marca: string,
     modelo: string,

@@ -1,4 +1,4 @@
-export interface PersonaDto{
+export interface PersonaResumenDto{
     id: string,
     nombre: string,
     apellido: string,

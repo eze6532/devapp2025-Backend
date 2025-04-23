@@ -9,6 +9,6 @@ export interface Persona {
     fechaDeNacimeneto: Date,
     genero:Genero,
     donante: boolean,
-    autos: Auto[] | null, //En un futuro voy a cambiarlo a Auto['id']
+    autos: Auto["id"] | null, //En un futuro voy a cambiarlo a Auto['id']
 }
 export type PersonaBasica = Pick<Persona, 'dni'|'apellido'|'nombre'>;

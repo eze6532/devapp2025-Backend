@@ -1,8 +1,14 @@
-//Poximamente el ruteo al controlador de Auto, me atrapaste aun no se como se hace \_(^-^')_/
+
 import { Router } from "express";
+import { PersonaController } from "../controllers/persona/personaController";
 
 
-const router = Router();
+const autoRouter = Router();
+const personaController= new PersonaController();
 
+autoRouter.get("/personas/lista", personaController.findAll);
+autoRouter.get("/persona/:id", personaController.findById);
+autoRouter.post("/persona/add", personaController.add);
+autoRouter.delete("/persona/delete/:id", personaController.deleteById);
 
-// router.get("/", autoController.ge)
+export default autoRouter;
