@@ -44,14 +44,10 @@ export let autoDeLupitaII: Auto = {
     duenio: '',
 };
 
-autos=[autoDeLupita, autoDeLupitaII, autoDeCastor]
-
-
 
 
 
 let personas: Persona[] = [];
-
 
 
 let Alen:Persona = {
@@ -59,7 +55,7 @@ let Alen:Persona = {
     nombre:'Alen',
     apellido:'Rojas',
     dni:'12.345.678',
-    fechaDeNacimeneto:new Date('1930/03/27'),
+    fechaDeNacimento:new Date('1930/03/27'),
     genero: Genero.M,
     donante: true,
     autos:[]
@@ -69,24 +65,24 @@ let Lupita:Persona = {
     nombre:'Lupa Maria',
     apellido:'Hernandes',
     dni:'12.345.679',
-    fechaDeNacimeneto:new Date('1999/12/24'),
+    fechaDeNacimento:new Date('1999/12/24'),
     genero: Genero.F,
     donante: true,
-    autos:[autoDeLupita, autoDeLupitaII]
+    autos:[autoDeLupita.id, autoDeLupitaII.id]
 };
-autoDeLupita.duenio = Lupita.id;
-autoDeLupitaII.duenio = Lupita.id;
 let Castor:Persona = {
     id: darId(),
     nombre:'Juan Castor 2',
     apellido:'Blanco Herrero',
     dni:'12.345.670',
-    fechaDeNacimeneto:new Date('1702/05/30'),
+    fechaDeNacimento:new Date('1702/05/30'),
     genero: Genero.M,
     donante: false,
-    autos:[autoDeCastor]
+    autos:[autoDeCastor.id]
 };
 autoDeCastor.duenio = Castor.id;
+autoDeLupita.duenio = Lupita.id;
+autoDeLupitaII.duenio=Lupita.id;
 personas=[Alen, Castor, Lupita];
-
+autos=[autoDeLupita, autoDeLupitaII, autoDeCastor]
 export {personas, autos};

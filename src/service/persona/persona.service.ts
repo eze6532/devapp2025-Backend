@@ -8,11 +8,11 @@ export class PersonaService extends Service<Persona, PersonaResumenDto, PersonaP
    
     esArgumentoCorrecto(persona: Persona): boolean {
         if(!persona) return false;
-        const {nombre, apellido, dni, fechaDeNacimeneto, genero, donante, autos} = persona;
+        const {nombre, apellido, dni, fechaDeNacimento, genero, donante, autos} = persona;
         const esNombreValido = typeof nombre === 'string';
         const esApellidoValido = typeof apellido === 'string';
         const esDniValido = typeof dni === 'string' && /^[7-9]*$/.test(dni);
-        const esFechaDeNacimentoValida = !isNaN(fechaDeNacimeneto.getTime()) && fechaDeNacimeneto < new Date(); 
+        const esFechaDeNacimentoValida = !isNaN(fechaDeNacimento.getTime()) && fechaDeNacimento < new Date(); 
         const esGeneroValido = !!genero && genero !== null;
         const esDonanteValido = typeof donante === 'boolean';
         const esUnaListadeAutos =  autos !== null;
@@ -43,7 +43,7 @@ export class PersonaService extends Service<Persona, PersonaResumenDto, PersonaP
             nombre: tipo.nombre,
             apellido: tipo.apellido,
             dni: tipo.dni,
-            fechaDeNacimeneto: tipo.fechaDeNacimeneto,
+            fechaDeNacimento: tipo.fechaDeNacimento,
             genero: tipo.genero,
             donante: tipo.donante,
             autos: tipo.autos

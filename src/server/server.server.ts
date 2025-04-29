@@ -11,15 +11,14 @@ import autoRouter from '../router/autoRouter';
 const app = express();
 const port = process.env.PORT || 9000;
 
-// Middleware
+
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 
-// Instancias de controladores
 
 
-// Endpoint base
+
 app.get('/', (req, res) => {
     console.log(req.headers);
     res.json('Hello world');
@@ -33,7 +32,6 @@ app.use("/api", personaRouter);
 app.use("/api", autoRouter);
 
 
-// Iniciar servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);
 });
