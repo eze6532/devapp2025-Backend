@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import process from 'process';
-import personaRouter from '../router/autoRouter';
+import personaRouter from '../router/personaRouter';
 import autoRouter from '../router/autoRouter';
 
 
@@ -28,8 +28,8 @@ app.post('/login', (req, res) => {
     console.log(req.method);
     res.json('Login OK');
 });
-app.use("/api", personaRouter);
-app.use("/api", autoRouter);
+app.use('/persona', personaRouter);
+app.use('/auto', autoRouter);
 
 
 app.listen(port, () => {

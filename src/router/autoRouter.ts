@@ -1,14 +1,12 @@
-
 import { Router } from "express";
-import { PersonaController } from "../controllers/persona/personaController";
+import { AutoController } from "../controllers/auto/auto.controller";
+const autoRouter = Router();
+const autoController= new AutoController();
 
+autoRouter.get('/lista', autoController.findAll.bind(autoController));
+autoRouter.get('/:id', autoController.findById.bind(autoController));
+autoRouter.post('/add', autoController.add.bind(autoController));
+autoRouter.delete('/delete', autoController.deleteById.bind(autoController));
+autoRouter.get('/duenio',autoController.findByDuenio.bind(autoController));
 
-const personaRouter = Router();
-const personaController= new PersonaController();
-
-personaRouter.get("/personas/lista", personaController.findAll);
-personaRouter.get("/persona/:id", personaController.findById);
-personaRouter.post("/persona/add", personaController.add);
-personaRouter.delete("/persona/delete/:id", personaController.deleteById);
-
-export default personaRouter;
+export default autoRouter;

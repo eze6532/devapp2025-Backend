@@ -2,6 +2,7 @@ import { PersonaPersonalizadaDto } from "../../DTOs/persona/personaPersonalizada
 import { PersonaResumenDto } from "../../DTOs/persona/personaResumen.dto";
 import { Persona } from "../../models/persona.model";
 import { PersonaRepository } from "../../repositoryes/persona/persona.repository";
+import { Service } from "../service";
 
 export class PersonaService extends Service<Persona, PersonaResumenDto, PersonaPersonalizadaDto>{
     private personaRepo= new PersonaRepository();

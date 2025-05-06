@@ -27,7 +27,7 @@ export class PersonaRepository extends Repository< Persona, PersonaResumenDto, P
     };
     public deleteById(id: string): void{
         const index= this.personas.findIndex(p=> p.id===id);
-        this.personas.splice(index)
+        this.personas.splice(index,1);
     };
     public addEntity(persona: Persona): string {
         persona.id= darId();

@@ -1,4 +1,4 @@
-abstract class Service<T,T2,T3>{
+export abstract class Service<T,T2,T3>{
     abstract listarTodos(): T[];
     abstract obtenerPorId(id: string): T | undefined;
     abstract listarResumen(): T2[];

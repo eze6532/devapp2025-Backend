@@ -2,6 +2,7 @@ import { AutoPersonalizadoDto } from "../../DTOs/auto/autoPersonalizado.dto";
 import { AutoResumenDto } from "../../DTOs/auto/autoResumen.dto";
 import { Auto } from "../../models/auto.model";
 import { AutoRepository } from "../../repositoryes/auto/auto.repository";
+import { Service } from "../service";
 
 
 export class AutoService extends Service< Auto, AutoResumenDto, AutoPersonalizadoDto>{
