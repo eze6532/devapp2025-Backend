@@ -1,17 +1,19 @@
-
 import { Router } from "express";
+import { MongoRepository } from "../repositories/Mongo.repository";
+import { PersonaService } from "../service/persona.service";
 import { PersonaController } from "../controllers/persona/personaController";
+import { PersonaModel } from "../db/persona.db";
 
+const personaRepo = new MongoRepository(PersonaModel);
+const personaService = new PersonaService(personaRepo);
+const personaController = new PersonaController(personaService);
 
-const personaRouter = Router();
-const personaController= new PersonaController();
-const lista='lista';
-personaRouter.get(`${lista}`, personaController.findAll.bind(personaController));
-personaRouter.get(`/${lista}/resumen`, personaController.findAllSummary.bind(personaController));
-personaRouter.get(`/${lista}/personalizado`, personaController.findAllCustomInfo.bind(personaController));
-personaRouter.get(`/${lista}/filtra/:argumento`, personaController.findAllFilterArgument.bind(personaController));
-personaRouter.get('/:id', personaController.findById.bind(personaController));
-personaRouter.post('/add', personaController.add.bind(personaController));
-personaRouter.delete('/delete/:id', personaController.deleteById.bind(personaController));
+const router = Router();
 
-export default personaRouter;
+router.get('/', personaController.findAll);
+router.get('/:id', personaController.findById);
+router.post('/', personaController.add);
+router.delete('/:id', personaController.deleteById);
+router.post('/edit/:id',personaController.edit)
+
+export default router;
