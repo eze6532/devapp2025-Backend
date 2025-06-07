@@ -3,8 +3,7 @@ import { MongoRepository } from "../repositories/Mongo.repository";
 import { IService } from "./interface.service";
 
 
-export class ServiceGenerico<D extends Document, Q extends FilterQuery<D>>
-    implements IService<D> {
+export class ServiceGenerico<D extends Document, Q extends FilterQuery<D>> implements IService<D> {
     constructor(protected repo: MongoRepository<D, Q>) {}
 
     findById(id: string) {

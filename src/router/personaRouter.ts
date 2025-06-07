@@ -14,6 +14,6 @@ router.get('/', personaController.findAll);
 router.get('/:id', personaController.findById);
 router.post('/', personaController.add);
 router.delete('/:id', personaController.deleteById);
-router.post('/edit/:id',personaController.edit)
+router.post('/edit/:id',personaController.edit);
 
 export default router;

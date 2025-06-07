@@ -11,5 +11,6 @@ const personaSchema = new Schema<PersonaDocument>({
   donante: { type: Boolean, default: false },
   autos: [{ type: Schema.Types.ObjectId, ref: 'Auto' }]
 });
+
 export type PersonaDocument= Document & Persona;
 export const PersonaModel = model<PersonaDocument>('Persona', personaSchema);

@@ -21,6 +21,7 @@ router.get('/:id', autoController.findById);
 router.post('/', autoController.add);                     
 router.delete('/:id', autoController.deleteById);         
 router.post('/edit/:id', autoController.edit);
+router.get('/duenio/:idAuto', autoController.getDuenio)
 
 
 export default router;

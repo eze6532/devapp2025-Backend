@@ -20,6 +20,6 @@ export class AutoService extends ServiceGenerico<AutoDocument, FilterQuery<AutoD
 
     async findByPatenteAndChasi(patente: string, numerodeChasis: string): Promise<boolean> {
         const auto = await this.repo.findOneByFields({ patente, numerodeChasis });
-        return !auto;
+        return !!auto;
     }
 }

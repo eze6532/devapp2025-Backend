@@ -14,7 +14,6 @@ export class ControllerGenerico<T> {
     try {
       const entidad= req.query;
       
-      
       const data = await this.service.findAll(entidad);
       res.json(data);
     } catch (error) {
