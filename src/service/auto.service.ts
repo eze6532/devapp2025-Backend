@@ -1,25 +1,40 @@
-import { FilterQuery } from "mongoose";
-import { AutoDocument } from "../db/auto.db";
-import { MongoRepository } from "../repositories/Mongo.repository";
+import { Auto } from "../models/auto.model";
+import { Persona } from "../models/persona.model";
+import { IRepository } from "../repositories/IRepository";
 import { ServiceGenerico } from "./ServiceGenerico";
-import { IService } from "./interface.service";
 
 
-export class AutoService extends ServiceGenerico<AutoDocument, FilterQuery<AutoDocument>> implements IService<AutoDocument>{
-    constructor(repo: MongoRepository<AutoDocument, FilterQuery<AutoDocument>>) {
-        super(repo);
+export class AutoService extends ServiceGenerico<Auto> {
+  constructor(
+    protected repoAuto: IRepository<Auto>,
+    private repoPersona: IRepository<Persona>
+  ) {
+    super(repoAuto);
+  }
+
+  findAll(filter?: Partial<Auto>) {
+    return this.repoAuto.findAll(filter, "marca modelo anio patente");
+  }
+
+  async delete(autoId: string): Promise<Auto | null> {
+    const auto = await this.repoAuto.findById(autoId);
+    if (!auto) return null;
+
+    if (auto.duenio && this.repoPersona.quitarAutoArray) {
+      await this.repoPersona.quitarAutoArray(auto.duenio, autoId);
     }
 
-    findAll(filter?: FilterQuery<AutoDocument>) {
-        return this.repo.findAll(filter, "marca modelo anio patente");
-    }
+    return this.repoAuto.deleteById(autoId);
+  }
 
-    findByDuenio(duenioId: string) {
-        return this.repo.findAll({ duenioId });
-    }
+  async findByDuenio(autoId: string) {
+    const auto = await this.repoAuto.findById(autoId);
+    if (!auto?.duenio) return null;
+    return { duenio: auto.duenio };
+  }
 
-    async findByPatenteAndChasi(patente: string, numerodeChasis: string): Promise<boolean> {
-        const auto = await this.repo.findOneByFields({ patente, numerodeChasis });
-        return !!auto;
-    }
+  async findByPatenteAndChasi(patente: string, numerodeChasis: string): Promise<boolean> {
+    const auto = await this.repoAuto.findOneByFields({ patente, numerodeChasis });
+    return !!auto;
+  }
 }

@@ -9,7 +9,7 @@ const autoSchema = new Schema<AutoDocument>({
   color: { type: String, required: true },
   numerodeChasis: { type: String, required: true },
   motor: { type: String, required: true },
-  duenio: { type: Schema.Types.ObjectId, ref: 'Persona', required: true }
+  duenio: {type: String, required: true }
 });
 
 export type AutoDocument = Auto & Document;

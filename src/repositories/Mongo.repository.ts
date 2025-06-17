@@ -1,6 +1,7 @@
 import { Model, FilterQuery, Document, UpdateQuery } from 'mongoose';
+import { IRepository } from './IRepository';
 
-export class MongoRepository<T extends Document, Q extends FilterQuery<T>> {
+export class MongoRepository<T extends Document, Q extends FilterQuery<T>> implements IRepository<T, Q, UpdateQuery<T>>{
     private model: Model<T>;
 
     constructor(model: Model<T>) {
@@ -30,6 +31,21 @@ export class MongoRepository<T extends Document, Q extends FilterQuery<T>> {
   
     async findOneByFields(fields: Partial<Record<keyof T, any>>): Promise<T | null> {
         return this.model.findOne(fields).exec();
+    }
+    async agregarAutoArray(personaId: string, autoId: string): Promise<void> {
+        await this.model.findByIdAndUpdate(
+            personaId,
+            { $addToSet: { autos: autoId } },
+            { new: true }
+        ).exec();
+    }
+
+    async quitarAutoArray(personaId: string, autoId: string): Promise<void> {
+        await this.model.findByIdAndUpdate(
+            personaId,
+            { $pull: { autos: autoId } },
+            { new: true }
+        ).exec();
     }
 
 }

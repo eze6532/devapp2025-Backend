@@ -13,7 +13,7 @@ export interface AutoDto{
 }
 export function autoToDto(auto: Auto): AutoDto {
   return {
-    id: auto._id.toString(),
+    id: auto.id.toString(),
     marca: auto.marca,
     modelo: auto.modelo,
     anio: auto.anio,
@@ -42,7 +42,7 @@ export function dtoToAuto(dto: AutoDto): Auto {
   };
 
   if (dto.id?.trim()) {
-    auto._id = dto.id;
+    auto.id = dto.id;
   }
 
   return auto as Auto;

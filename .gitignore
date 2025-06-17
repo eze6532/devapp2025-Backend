@@ -1,11 +1,12 @@
-.DS_Store
-Thumbs.db
-.tmp/
+# Node modules
+/node_modules
 
-packend-lock.json
-node_modules/
+# Build output
+/dist
+/functions/node_modules
 
-tsconfig.build.json
-
-dist/
 *.env
+
+/firestore.indexes.json
+/firestore.rules
+/serviceAccountKey.json

@@ -14,18 +14,24 @@ export interface PersonaDto{
 
 
 export function personaToDto(persona: Persona): PersonaDto {
+
+  const fecha = persona.fechaDeNacimiento;
   return {
-    id: persona._id.toString(),
+    id: persona.id.toString(),
     nombre: persona.nombre,
     apellido: persona.apellido,
     dni: persona.dni,
-    fechaDeNacimiento: persona.fechaDeNacimiento ? persona.fechaDeNacimiento.toISOString().split('T')[0]: undefined,
+    fechaDeNacimiento:fecha instanceof Date
+      ? fecha.toISOString().split('T')[0]
+      : typeof fecha === 'string'
+        ? fecha
+        : undefined,
     genero: persona.genero,
     donante: persona.donante,
-    autos: persona.autos?.map(autoId => autoId.toString()) || []
-  };
+    autos:persona.autos,
+  
+  }
 }
-
 export function dtoToPersona(dto: PersonaDto): Persona {
     if (!dto.nombre || !dto.apellido || !dto.dni || !dto.fechaDeNacimiento || !dto.genero || dto.donante === undefined) {
         throw new Error("Faltan campos obligatorios en PersonaDto");
@@ -40,7 +46,7 @@ export function dtoToPersona(dto: PersonaDto): Persona {
         autos: dto.autos?.map(id => id as any) || [] 
     };
     if (dto.id?.trim()) {
-    persona._id = dto.id;
+    persona.id = dto.id;
   }
 
     return persona as Persona;
